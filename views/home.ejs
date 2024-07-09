@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Home Page</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+
+    <!-- Header -->
+    <header style="background-color: #333; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+        <div class="logo" style="font-size: 1.5rem;">Blog Logo</div>
+        <nav>
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
+                <li style="margin-left: 1rem;"><a href="#" style="color: #fff; text-decoration: none;">Home</a></li>
+                <li style="margin-left: 1rem;"><a href="#" style="color: #fff; text-decoration: none;">About</a></li>
+                <li style="margin-left: 1rem;"><a href="#" style="color: #fff; text-decoration: none;">Blog</a></li>
+                <li style="margin-left: 1rem;"><a href="#" style="color: #fff; text-decoration: none;">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Featured Image Section -->
+        <div class="banner" style="width: 100%; height: 300px; background-color: #f4f4f4; display: flex; align-items: center; justify-content: center; margin-top: 1rem;">
+            <img src="dummy-image.jpg" alt="Featured Image" style="max-width: 100%; height: auto;">
+        </div>
+
+        <!-- Blog Posts Section -->
+        <div class="posts" style="padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-around;">
+            <% blogs.forEach((blogs)=>{ %>
+            <div class="post-card" style="border: 1px solid #ddd; border-radius: 4px; padding: 1rem; margin: 1rem; width: calc(33.333% - 2rem); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <img src="<%- blogs.image %>" alt="Post Image" style="max-width: 100%; height: auto; border-bottom: 1px solid #ddd; margin-bottom: 1rem;">
+                <h3 style="margin: 0.5rem 0;">Blog Post Title</h3>
+                <p style="color: #555; margin: 0.5rem 0;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim...</p>
+                <a href="#" style="color: #007BFF; text-decoration: none;">Read More</a>
+            </div>
+            <% }) %>
+
+            <!-- Add more post cards as needed -->
+        </div>
+    </main>
+
+</body>
+</html>
