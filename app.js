@@ -41,7 +41,9 @@ app.get("/deleteblog/:id",async (req,res)=>{
 })
 
 app.get("/editblog/:id",async (req,res)=>{
-   res.render("editblog")
+  const id=req.params.id;
+  const blog=await Blog.findById(id);
+   res.render("editblog",{blog:blog})
 })
 
 
