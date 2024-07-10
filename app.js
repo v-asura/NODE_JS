@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:true}));
 
 connectToDb();
 
-app.use(express.static("./images"))
+app.use(express.static("./storage"))
 app.set('view engine','ejs')
 
 app.get("/",async (req,res)=>{
@@ -27,6 +27,26 @@ app.get("/about",(req,res)=>{
 app.get("/contact",(req,res)=>{
    res.render("contact.ejs")
 })
+
+app.get("/blog/:id",async (req,res)=>{
+  const id=req.params.id;
+  const blog=await Blog.findById(id);
+   res.render("blog.ejs",{blog:blog})
+})
+
+app.get("/deleteblog/:id",async (req,res)=>{
+  const id=req.params.id;
+  const remove=await Blog.findByIdAndDelete(id);
+   res.redirect("/")
+})
+
+app.get("/editblog/:id",async (req,res)=>{
+   res.render("editblog")
+})
+
+
+
+
 
 app.get("/createblog",(req,res)=>{
   res.render("createblog.ejs")
