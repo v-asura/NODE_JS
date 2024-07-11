@@ -1,16 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Single Blog Example</title>
     <style>
-        /* Internal CSS Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
 
         .navbar {
@@ -61,38 +60,57 @@
             margin-top: 10px;
             line-height: 1.6;
         }
+
+        .blog-buttons {
+            margin-top: 20px;
+        }
+
+        .blog-buttons a {
+            text-decoration: none;
+            color: white;
+            background-color: #333;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .blog-buttons a:hover {
+            background-color: #555;
+        }
     </style>
 </head>
-
 <body>
     <!-- Navigation Bar -->
-    <div class="navbar">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
-    </div>
+    <header style="background-color: #333; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
+        <div class="logo" style="font-size: 1.5rem;">Blog Logo</div>
+        <nav>
+            <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
+                <li style="margin-left: 1rem;"><a href="/" style="color: #fff; text-decoration: none;">Home</a></li>
+                <li style="margin-left: 1rem;"><a href="/register" style="color: #fff; text-decoration: none;">Register</a></li>
+                <li style="margin-left: 1rem;"><a href="/login" style="color: #fff; text-decoration: none;">Login</a></li>
+                <li style="margin-left: 1rem;"><a href="/contact" style="color: #fff; text-decoration: none;">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Blog Content -->
     <div class="blog-container">
         <!-- Single Blog Section -->
-        <div class="card">
-
-          
-            <img class="blog-image" src="/<%- blog.image%>" alt="Blog Image">
+        <div class="card" style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <img class="blog-image" src="/<%- blog.image %>" alt="Blog Image">
             <div class="blog-content">
-                <div class="blog-title"><%- blog.title%></div>
-                <div class="blog-subtitle"><%- blog.title%></div>
+                <div class="blog-title"><%- blog.title %></div>
+                <div class="blog-subtitle"><%- blog.subtitle %></div>
                 <div class="blog-description">
-                    <%- blog.description%>
+                    <%- blog.description %>
                 </div>
             </div>
-
-            <button><a href="/deleteblog/<%- blog.id%>">Delete Me</a></button>
-            <button><a href="/editblog/<%- blog.id%>">Edit me</a></button>
+            <div class="blog-buttons">
+                <a href="/deleteblog/<%- blog.id %>">Delete Me</a>
+                <a href="/editblog/<%- blog.id %>">Edit Me</a>
+            </div>
         </div>
     </div>
-
 </body>
-
 </html>
