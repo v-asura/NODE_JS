@@ -1,19 +1,63 @@
-
-
-<!-- components/navbar.ejs -->
-<header style="background-color: #333; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
-    <div class="logo" style="font-size: 1.5rem;">Blog Logo</div>
+<!-- navbar.ejs -->
+<header class="navbar">
+    <div class="logo">Blog Logo</div>
     <nav>
-        <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
-            <li style="margin-left: 1rem;"><a href="/" style="color: #fff; text-decoration: none;">Home</a></li>
+        <ul class="nav-links">
+            <li><a href="/" class="nav-link">Home</a></li>
             <% if (typeof user !== 'undefined' && user) { %>
-                <li style="margin-left: 1rem;"><a href="/createblog" style="color: #fff; text-decoration: none;">Create</a></li>
-                <li style="margin-left: 1rem;"><a href="/contact" style="color: #fff; text-decoration: none;">Contact</a></li>
-                <li style="margin-left: 1rem;"><a href="/logout" style="color: #fff; text-decoration: none;">Logout</a></li>
+                <li><a href="/createblog" class="nav-link">Create</a></li>
+                <li><a href="/contact" class="nav-link">Contact</a></li>
+                <li><a href="/logout" class="nav-link">Logout</a></li>
+                <li class="user-info">User: <%= user.username %></li>
             <% } else { %>
-                <li style="margin-left: 1rem;"><a href="/register" style="color: #fff; text-decoration: none;">Register</a></li>
-                <li style="margin-left: 1rem;"><a href="/login" style="color: #fff; text-decoration: none;">Login</a></li>
+                <li><a href="/register" class="nav-link">Register</a></li>
+                <li><a href="/login" class="nav-link">Login</a></li>
             <% } %>
         </ul>
     </nav>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        .nav-links li {
+            margin-left: 1rem;
+        }
+        
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+        
+        .user-info {
+            color: #fff;
+        }
+    </style>
 </header>
