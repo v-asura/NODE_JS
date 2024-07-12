@@ -69,17 +69,7 @@
 </head>
 <body>
 
-    <header style="background-color: #333; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
-        <div class="logo" style="font-size: 1.5rem;">Blog Logo</div>
-        <nav>
-            <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
-                <li style="margin-left: 1rem;"><a href="/" style="color: #fff; text-decoration: none;">Home</a></li>
-                <li style="margin-left: 1rem;"><a href="/register" style="color: #fff; text-decoration: none;">Register</a></li>
-                <li style="margin-left: 1rem;"><a href="/login" style="color: #fff; text-decoration: none;">Login</a></li>
-                <li style="margin-left: 1rem;"><a href="/contact" style="color: #fff; text-decoration: none;">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <%- include("../components/navbar.ejs")%>
 
     <div class="container">
         <form action="/createblog" method="post" enctype="multipart/form-data">
