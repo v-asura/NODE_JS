@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .results {
+            padding: 2rem;
+            text-align: center;
+        }
+        .results h1 {
+            margin-bottom: 2rem;
+        }
+        .posts {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .post-card {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem;
+            width: calc(33.333% - 2rem);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .post-card img {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+        }
+        .post-card h3 {
+            margin: 0.5rem 0;
+        }
+        .post-card p {
+            color: #555;
+            margin: 0.5rem 0;
+        }
+        .post-card a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="results">
+        <h1>Search Results for "<%= query %>"</h1>
+        
+        <% if (blogs.length > 0) { %>
+            <div class="posts">
+                <% blogs.forEach((blog) => { %>
+                    <div class="post-card">
+                        <img src="<%- blog.image %>" alt="Post Image">
+                        <h3><%- blog.title %></h3>
+                        <p><%- blog.description %></p>
+                        <a href="/blog/<%- blog._id %>">Read More</a>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <p>No blogs found.</p>
+        <% } %>
+    </div>
+
+</body>
+</html>

@@ -58,6 +58,7 @@ app.get("/login",(req,res)=>{
    res.render("login.ejs")
 })
 
+
 app.post("/login",async (req,res)=>{
   const {email,password}=req.body;
   const user=await User.find({email:email})
@@ -86,17 +87,20 @@ app.get("/blog/:id",isAuthenticated,async (req,res)=>{
    res.render("blog.ejs",{blog:blog})
 })
 
+
 app.get("/deleteblog/:id",async (req,res)=>{
   const id=req.params.id;
   const remove=await Blog.findByIdAndDelete(id);
    res.redirect("/")
 })
 
+
 app.get("/editblog/:id",async (req,res)=>{
   const id=req.params.id;
   const blog=await Blog.findById(id);
    res.render("editblog",{blog:blog})
 })
+
 
 app.post("/editblog/:id",upload.single('image'),async (req,res)=>{
   const id=req.params.id;
@@ -112,7 +116,22 @@ app.post("/editblog/:id",upload.single('image'),async (req,res)=>{
 })
 
 
+app.get("/search", async (req, res) => {
+  const query = req.query.query;
+  if (!query) {
+      return res.redirect("/");
+  }
 
+  const blogs = await Blog.find({
+      $or: [
+          { title: new RegExp(query, 'i') },
+          { subtitle: new RegExp(query, 'i') },
+          { description: new RegExp(query, 'i') }
+      ]
+  });
+
+  res.render("search.ejs", { blogs: blogs, query: query });
+});
 
 
 app.get("/createblog",isAuthenticated,(req,res)=>{

@@ -4,8 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .search-form {
+            padding: 2rem;
+            text-align: center;
+        }
+        .search-form input[type="text"] {
+            width: 300px;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .search-form button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #007BFF;
+            color: #fff;
+            cursor: pointer;
+        }
+        .posts {
+            padding: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .post-card {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 1rem;
+            margin: 1rem;
+            width: calc(33.333% - 2rem);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .post-card img {
+            max-width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 1rem;
+        }
+        .post-card h3 {
+            margin: 0.5rem 0;
+        }
+        .post-card p {
+            color: #555;
+            margin: 0.5rem 0;
+        }
+        .post-card a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+<body>
 
     <!-- Header -->
     <%- include("../components/navbar.ejs")%>
@@ -13,19 +69,24 @@
     <!-- Main Content -->
     <main>
 
+        <!-- Search Form -->
+        <div class="search-form">
+            <form action="/search" method="GET">
+                <input type="text" name="query" placeholder="Search blogs...">
+                <button type="submit">Search</button>
+            </form>
+        </div>
 
         <!-- Blog Posts Section -->
-        <div class="posts" style="padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-around;">
+        <div class="posts">
             <% blogs.forEach((blog)=>{ %>
-            <div class="post-card" style="border: 1px solid #ddd; border-radius: 4px; padding: 1rem; margin: 1rem; width: calc(33.333% - 2rem); box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-                <img src="<%- blog.image %>" alt="Post Image" style="max-width: 100%; height: auto; border-bottom: 1px solid #ddd; margin-bottom: 1rem;">
-                <h3 style="margin: 0.5rem 0;"><%- blog.title %></h3>
-                <p style="color: #555; margin: 0.5rem 0;"><%- blog.description %></p>
-                <a href="/blog/<%-blog._id %>" style="color: #007BFF; text-decoration: none;">Read More</a>
+            <div class="post-card">
+                <img src="<%- blog.image %>" alt="Post Image">
+                <h3><%- blog.title %></h3>
+                <p><%- blog.description %></p>
+                <a href="/blog/<%-blog._id %>">Read More</a>
             </div>
             <% }) %>
-
-            <!-- Add more post cards as needed -->
         </div>
     </main>
 
