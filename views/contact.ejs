@@ -7,17 +7,7 @@
 </head>
 <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
 
-    <header style="background-color: #333; color: #fff; display: flex; justify-content: space-between; align-items: center; padding: 1rem;">
-        <div class="logo" style="font-size: 1.5rem;">Blog Logo</div>
-        <nav>
-            <ul style="list-style: none; margin: 0; padding: 0; display: flex;">
-                <li style="margin-left: 1rem;"><a href="/" style="color: #fff; text-decoration: none;">Home</a></li>
-                <li style="margin-left: 1rem;"><a href="/register" style="color: #fff; text-decoration: none;">Register</a></li>
-                <li style="margin-left: 1rem;"><a href="/login" style="color: #fff; text-decoration: none;">Login</a></li>
-                <li style="margin-left: 1rem;"><a href="/contact" style="color: #fff; text-decoration: none;">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <%- include("../components/navbar.ejs")%>
 
     <form action="submit_form.php" method="post" style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff; margin-top: 20px;">
         <h2 style="text-align: center;">Contact Us</h2>

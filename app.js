@@ -1,12 +1,18 @@
+require("dotenv").config()
+
 const express=require("express");
 const app=express();
 const bcrypt=require("bcrypt")
+const jwt=require("jsonwebtoken")
+const cookieParser=require('cookie-parser')
+app.use(cookieParser());
 
 const connectToDb = require("./database/databaseConnection");
 const Blog = require("./model/blogModel");
 
 const {multer,storage}=require('./middleware/multerConfig');
 const User = require("./model/userModel");
+const isAuthenticated = require("./middleware/isAuthenticated");
 const upload=multer({storage:storage});
 
 app.use(express.json());
@@ -63,13 +69,18 @@ app.post("/login",async (req,res)=>{
   if(!isMatched){
     res.send("Invalid Password")
   }else{
+    //require dotenv config file
+    const token=jwt.sign({userId:user[0]._id},process.env.SECRET,{
+      expiresIn:'20d'
+    })
+    res.cookie("token",token)
     res.send("logged in successfully")
   }
   }
  })
 
 
-app.get("/blog/:id",async (req,res)=>{
+app.get("/blog/:id",isAuthenticated,async (req,res)=>{
   const id=req.params.id;
   const blog=await Blog.findById(id);
    res.render("blog.ejs",{blog:blog})
@@ -104,7 +115,7 @@ app.post("/editblog/:id",upload.single('image'),async (req,res)=>{
 
 
 
-app.get("/createblog",(req,res)=>{
+app.get("/createblog",isAuthenticated,(req,res)=>{
   res.render("createblog.ejs")
 })
 
